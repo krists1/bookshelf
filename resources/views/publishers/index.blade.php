@@ -7,9 +7,9 @@
         </div>
         <div class="card-body">
 
-            @if(session()->get('success'))
+            @if(session()->get('message'))
                 <div class="alert alert-success">
-                    {{ session()->get('success') }}
+                    {{ session()->get('message') }}
                 </div><br />
             @endif
 

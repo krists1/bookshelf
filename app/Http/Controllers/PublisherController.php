@@ -36,7 +36,9 @@ class PublisherController extends Controller
     {
         Publisher::create($request->validated());
 
-        return redirect(route('publishers.index'));
+        return redirect(route('publishers.index'))->with([
+            'message' => 'Izdevniecība "'.request('name').'" izveidota'
+        ]);
     }
 
     /**
@@ -75,6 +77,10 @@ class PublisherController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
-        //
+        $publisher->delete();
+
+        return redirect(route('publishers.index'))->with([
+            'message' => 'Izdevniecība "'.$publisher->name.'" dzēsta'
+        ]);
     }
 }

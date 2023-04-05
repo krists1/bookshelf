@@ -14,7 +14,8 @@ class Book extends Model
     public $fillable = [
         'title',
         'description',
-        'author_id'
+        'author_id',
+        'publisher_id'
     ];
 
     public function author(): BelongsTo
@@ -27,12 +28,19 @@ class Book extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function publisher(): BelongsTo
+    {
+        return $this->belongsTo(Publisher::class);
+    }
+
+
     public static function rules(): array
     {
         return [
             'title'=> 'required|string|max:250',
             'author_id' => 'required|exists:authors,id',
-            'description' => 'required|string'
+            'description' => 'required|string',
+            'publisher_id' => 'required|exists:publishers,id'
         ];
     }
 }

@@ -41,6 +41,19 @@
                     </select>
                 </div>
 
+                <div>
+                    <label for="publisher_id">Izdevniecība</label>
+
+                    <select name="publisher_id" class="form-control">
+                        <option disabled hidden selected>-- Lūdzu izvēlieties izdevniecību --</option>
+
+                        @foreach(\App\Models\Publisher::all() as $publisher)
+                            <option value="{{ $publisher->id }}" {{(isset($book) && ($book->publisher_id == $publisher->id)) ? 'selected' : ''}}>{{ $publisher->name }}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <label for="description">Apraksts:</label>
                     <textarea class="form-control" name="description" rows="10">{{ $book->description ?? ''}}</textarea>

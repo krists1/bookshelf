@@ -20,6 +20,7 @@
                         <td>ID</td>
                         <td>Nosaukums</td>
                         <td>Autors</td>
+                        <td>Izdevniecība</td>
                         <td class="text-end">Darbības</td>
                     </tr>
                 </thead>
@@ -30,6 +31,7 @@
                         <td>{{$book->id}}</td>
                         <td>{{$book->title}}</td>
                         <td>{{$book->author->full_name }}</td>
+                        <td>{{$book->publisher->name}}</td>
                         <td class="text-end">
                             <a href="{{ route('book.show',$book->id)}}" class="btn btn-primary">Skatīt</a>
                             @can('update', $book)
