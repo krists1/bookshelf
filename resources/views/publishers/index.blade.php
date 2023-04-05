@@ -32,7 +32,15 @@
                         <td>{{$publisher->name}}</td>
                         <td>{{$publisher->country}}</td>
                         <td>{{$publisher->founded}}</td>
-                        <td></td>
+                        <td>
+                            <a href="{{ route('publishers.show', $publisher->id)}}" class="btn btn-primary">Skatīt</a>
+                            <a href="{{ route('publishers.edit', $publisher->id)}}" class="btn btn-secondary">Labot</a>
+                            <form action="{{ route('publishers.destroy', $publisher->id)}}" method="post" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit" onclick="confirm('Vai tiešām dzēst?')">Dzēst</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

@@ -52,7 +52,9 @@ class BookController extends Controller
     public function show(Book $book): View
     {
         return view('book.show', [
-            'book' => $book
+            'book' => $book,
+            //'reviews' => $book->reviews()->where('published', '=',true)->get()
+            'reviews' => $book->reviews
         ]);
     }
 

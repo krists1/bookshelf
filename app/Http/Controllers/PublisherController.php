@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publisher;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePublisherRequest;
+use App\Http\Requests\UpdatePublisherRequest;
+use Illuminate\Http\RedirectResponse;
 
 class PublisherController extends Controller
 {
     /**
-     * Display a listing of publishers.
+     * Display a listing of the resource.
      */
     public function index()
     {
@@ -22,45 +24,56 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        return 'Jauns izdevējs!';
+        return view('publishers.create', [
+            'action' => route('publishers.store')
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePublisherRequest $request) : RedirectResponse
     {
-        //
+        Publisher::create($request->validated());
+
+        return redirect(route('publishers.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Publisher $publisher)
     {
-        //
+        return view('publishers.show', [
+            'publisher' => $publisher
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Publisher $publisher)
     {
-        //
+        return view('publishers.create', [
+            'publisher' => $publisher,
+            'action' => route('publishers.update', $publisher->id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePublisherRequest $request, Publisher $publisher)
     {
-        //
+        $publisher->update($request->validated());
+
+        return redirect(route('publishers.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Publisher $publisher)
     {
         //
     }

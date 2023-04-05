@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('book', BookController::class);
 Route::resource('author', AuthorController::class);
+Route::resource('review', ReviewController::class);
 
 /*
  Route::get('publishers', [\App\Http\Controllers\PublisherController::class, 'index'])
