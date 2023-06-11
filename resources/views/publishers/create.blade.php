@@ -41,6 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label for="active">Aktīva:</label>
+                    <input type="hidden" name="active" value="0">
                     <input class="form-check-input" type="checkbox" name="active" value="1" {{ ($publisher->active ?? old('active')) == 1 ? "checked" : "" }}>
                 </div>
 
